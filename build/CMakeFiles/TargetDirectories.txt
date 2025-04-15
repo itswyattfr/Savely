@@ -1,0 +1,3 @@
+C:/Users/wyatt/Desktop/Savely/build/CMakeFiles/Savely.dir
+C:/Users/wyatt/Desktop/Savely/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/wyatt/Desktop/Savely/build/CMakeFiles/ZERO_CHECK.dir
