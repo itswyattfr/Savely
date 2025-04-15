@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{11F652F4-2086-3B5B-9D42-0B81D15BB291}"
+	ProjectSection(ProjectDependencies) = postProject
+		{70F2E0B6-8605-3980-8BC3-74C5B19C91FA} = {70F2E0B6-8605-3980-8BC3-74C5B19C91FA}
+		{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7} = {AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Savely", "Savely.vcxproj", "{70F2E0B6-8605-3980-8BC3-74C5B19C91FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7} = {AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcxproj", "{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+		RelWithDebInfo|x64 = RelWithDebInfo|x64
+		Debug|x64 = Debug|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11F652F4-2086-3B5B-9D42-0B81D15BB291}.Release|x64.ActiveCfg = Release|x64
+		{11F652F4-2086-3B5B-9D42-0B81D15BB291}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
+		{11F652F4-2086-3B5B-9D42-0B81D15BB291}.Debug|x64.ActiveCfg = Debug|x64
+		{70F2E0B6-8605-3980-8BC3-74C5B19C91FA}.Release|x64.ActiveCfg = Release|x64
+		{70F2E0B6-8605-3980-8BC3-74C5B19C91FA}.Release|x64.Build.0 = Release|x64
+		{70F2E0B6-8605-3980-8BC3-74C5B19C91FA}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
+		{70F2E0B6-8605-3980-8BC3-74C5B19C91FA}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
+		{70F2E0B6-8605-3980-8BC3-74C5B19C91FA}.Debug|x64.ActiveCfg = Debug|x64
+		{70F2E0B6-8605-3980-8BC3-74C5B19C91FA}.Debug|x64.Build.0 = Debug|x64
+		{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}.Release|x64.ActiveCfg = Release|x64
+		{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}.Release|x64.Build.0 = Release|x64
+		{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
+		{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
+		{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}.Debug|x64.ActiveCfg = Debug|x64
+		{AC84D1AE-0603-339F-BFEC-CBFDFE70BEB7}.Debug|x64.Build.0 = Debug|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BED423D-6AC2-398F-B671-0134A062A42F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
