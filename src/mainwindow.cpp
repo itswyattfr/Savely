@@ -27,11 +27,10 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), isDragging(false), networkManager(new QNetworkAccessManager(this))
 {
-    // Remove window frame
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    currentVersion = "1.0.0"; // Set your app's current version
+    currentVersion = "1.0.0";
 
     setupUI();
     setupStyleSheet();
@@ -51,11 +50,9 @@ void MainWindow::setupUI()
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    // Create custom title bar
     createTitleBar();
     mainLayout->addWidget(titleBar);
 
-    // Create the tab widget
     createTabWidget();
     mainLayout->addWidget(tabWidget);
 
@@ -74,12 +71,10 @@ void MainWindow::createTitleBar()
     logoLabel = new QLabel("SAVELY", titleBar);
     logoLabel->setObjectName("logoLabel");
 
-    // Create menu button
     menuButton = new QPushButton("≡", titleBar);
     menuButton->setObjectName("menuButton");
     menuButton->setFixedSize(30, 30);
-
-    // Create options menu
+    
     optionsMenu = new QMenu(this);
     optionsMenu->addAction("Settings", this, &MainWindow::showSettingsDialog);
     optionsMenu->addAction("Plugins", this, &MainWindow::showPluginsDialog);
@@ -107,11 +102,9 @@ void MainWindow::createTitleBar()
 
 void MainWindow::createTabWidget()
 {
-    // Same as your existing createTabWidget implementation
     tabWidget = new QTabWidget(this);
     tabWidget->setObjectName("tabWidget");
-
-    // Tab 1: Save Collection
+    
     QWidget *saveCollectionTab = new QWidget(tabWidget);
     QVBoxLayout *saveCollectionLayout = new QVBoxLayout(saveCollectionTab);
 
@@ -131,14 +124,14 @@ void MainWindow::createTabWidget()
     saveCollectionLayout->addWidget(saveList);
     saveCollectionLayout->addLayout(saveButtonsLayout);
 
-    // Tab 2: Game Manager
     QWidget *gameManagerTab = new QWidget(tabWidget);
     QVBoxLayout *gameManagerLayout = new QVBoxLayout(gameManagerTab);
 
     QListWidget *gameList = new QListWidget(gameManagerTab);
     gameList->setObjectName("gameList");
 
-    // Add some sample games
+
+    // Sample Games
     gameList->addItem("Elden Ring");
     gameList->addItem("Cyberpunk 2077");
     gameList->addItem("Baldur's Gate 3");
@@ -157,7 +150,7 @@ void MainWindow::createTabWidget()
     gameManagerLayout->addWidget(gameList);
     gameManagerLayout->addLayout(gameButtonsLayout);
 
-    // Tab 3: Settings
+
     QWidget *settingsTab = new QWidget(tabWidget);
     QVBoxLayout *settingsLayout = new QVBoxLayout(settingsTab);
 
@@ -173,7 +166,6 @@ void MainWindow::createTabWidget()
     settingsLayout->addStretch();
     settingsLayout->addWidget(saveSettingsButton);
 
-    // Add the tabs
     tabWidget->addTab(saveCollectionTab, "Save Collection");
     tabWidget->addTab(gameManagerTab, "Game Manager");
     tabWidget->addTab(settingsTab, "Settings");
@@ -181,7 +173,7 @@ void MainWindow::createTabWidget()
 
 void MainWindow::setupStyleSheet()
 {
-    // Modern dark theme with updated styles for rounded corners
+    // TODO: Reformat Styling, possibly implement it better
     setStyleSheet(R"(
         QMainWindow {
             background-color: transparent;
@@ -331,7 +323,6 @@ void MainWindow::setupStyleSheet()
 
 void MainWindow::applyRoundedCorners()
 {
-    // Create mask for rounded corners
     QPainterPath path;
     path.addRoundedRect(rect(), 10, 10);
     QRegion mask = QRegion(path.toFillPolygon().toPolygon());
@@ -341,18 +332,13 @@ void MainWindow::applyRoundedCorners()
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
-
-    // Paint rounded corners and shadow
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
     QPainterPath path;
     path.addRoundedRect(rect(), 10, 10);
-
-    // Fill with background color
     painter.fillPath(path, QColor(45, 45, 45));
 
-    // Draw border
     painter.setPen(QPen(QColor(68, 68, 68), 1));
     painter.drawPath(path);
 }
@@ -409,7 +395,7 @@ void MainWindow::showInfoDialog()
 
     QVBoxLayout *layout = new QVBoxLayout(&infoDialog);
 
-    // Create title bar for the dialog
+
     QWidget *dialogTitleBar = new QWidget(&infoDialog);
     dialogTitleBar->setObjectName("titleBar");
     dialogTitleBar->setFixedHeight(40);
@@ -428,11 +414,9 @@ void MainWindow::showInfoDialog()
     dialogTitleLayout->addStretch();
     dialogTitleLayout->addWidget(dialogCloseButton);
 
-    // Create content area
     QTextBrowser *infoBrowser = new QTextBrowser(&infoDialog);
     infoBrowser->setOpenExternalLinks(true);
 
-    // Set the info content
     QString infoText = "<h2>Savely - Game Save Manager</h2>";
     infoText += "<p>Current Version: " + currentVersion + "</p>";
     infoText += "<p>Latest Version: " + (latestVersion.isEmpty() ? "Checking..." : latestVersion) + "</p>";
@@ -447,34 +431,28 @@ void MainWindow::showInfoDialog()
     infoText += "<p>Visit <a href='https://github.com/savely/savely'>GitHub Repository</a></p>";
     infoBrowser->setHtml(infoText);
 
-    // Add a close button at the bottom
     QPushButton *closeInfoButton = new QPushButton("Close", &infoDialog);
 
-    // Add widgets to layout
     layout->addWidget(dialogTitleBar);
     layout->addWidget(infoBrowser);
     layout->addWidget(closeInfoButton);
 
-    // Connect close buttons
     connect(dialogCloseButton, &QPushButton::clicked, &infoDialog, &QDialog::accept);
     connect(closeInfoButton, &QPushButton::clicked, &infoDialog, &QDialog::accept);
-
-    // Apply the rounded corners to the dialog
+  
     QPainterPath path;
     path.addRoundedRect(infoDialog.rect(), 10, 10);
     infoDialog.setMask(QRegion(path.toFillPolygon().toPolygon()));
 
-    // Execute the dialog
+  
     infoDialog.exec();
 }
 
 void MainWindow::fetchLatestVersion()
 {
-    // Replace with your actual GitHub repository API URL
-    QUrl apiUrl("https://api.github.com/repos/savely/savely/releases/latest");
+    QUrl apiUrl("https://api.github.com/repos/itswyattfr/savely/releases/latest");
     QNetworkRequest request(apiUrl);
 
-    // Send the request
     QNetworkReply *reply = networkManager->get(request);
     connect(reply, &QNetworkReply::finished, [this, reply]()
             { onVersionInfoReceived(reply); });
@@ -484,16 +462,13 @@ void MainWindow::onVersionInfoReceived(QNetworkReply *reply)
 {
     if (reply->error() == QNetworkReply::NoError)
     {
-        // Parse the JSON response
         QByteArray data = reply->readAll();
         QJsonDocument doc = QJsonDocument::fromJson(data);
         QJsonObject obj = doc.object();
 
-        // Extract the tag_name which typically contains the version
         if (obj.contains("tag_name"))
         {
             latestVersion = obj["tag_name"].toString();
-            // Remove 'v' prefix if present
             if (latestVersion.startsWith('v'))
             {
                 latestVersion.remove(0, 1);
